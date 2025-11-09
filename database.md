@@ -35,7 +35,7 @@
 | program_id     | int          |      | PRIMARY |        |               |
 | see_number     | int          |      |         |        |               |
 
-## KPI
+## kpi
 
 |  カラム名  | データ型 | NULL |  キー   | 初期値 | autoincrement |
 | ---------- | -------- | ---- | ------- | ------ | ------------- |
