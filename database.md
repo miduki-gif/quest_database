@@ -11,7 +11,7 @@
 |   カラム名   |  データ型   | NULL | キー | 初期値  | autoincrement |
 | ------------ | ----------- | ---- | ---- | ------- | ------------- |
 | channel_name | varchar(20) |      |      |         |               |
-| program_id   | int         |      |      | PRIMARY |               |
+| program_id   | int         |      |      | PRIMARY | YES           |
 
 
 ## series
