@@ -1,4 +1,4 @@
-## programas
+## programs
 |    カラム名    |   データ型   | NULL |  キー   | 初期値 | autoincrement |
 | -------------- | ------------ | ---- | ------- | ------ | ------------- |
 | title          | varchar(50)  |      | PRIMARY |        |               |
