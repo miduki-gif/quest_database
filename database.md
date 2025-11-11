@@ -27,7 +27,7 @@
 
 |    カラム名    |   データ型   | NULL |  キー   | 初期値 | autoincrement |
 | -------------- | ------------ | ---- | ------- | ------ | ------------- |
-| season_number  | int          |      |         |        |               |
+| season_number  | int          | YES  |         |        |               |
 | episode_number | int          |      | PRIMARY |        | YES           |
 | title          | varchar(50)  |      |         |        |               |
 | episode_detail | varchar(200) |      |         |        |               |
