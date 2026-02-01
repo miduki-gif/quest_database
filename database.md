@@ -1,52 +1,65 @@
-## programs
-|    カラム名    |   データ型   | NULL |  キー   | 初期値 | autoincrement |
-| -------------- | ------------ | ---- | ------- | ------ | ------------- |
-| title          | varchar(50)  |      |         |        |               |
-| program_id     | int          |      | PRIMARY |        | YES           |
-| program_detail | varchar(200) |      |         |        |               |
-| category       | varchar(20)  |      |         |        |               |
-
-## channels
-
-|   カラム名   |  データ型   | NULL |  キー   | 初期値 | autoincrement |
-| ------------ | ----------- | ---- | ------- | ------ | ------------- |
-| channel_name | varchar(20) |      |         |        |               |
-| program_id   | int         |      |         |        | YES           |
-| channel_id   | int         |      | PRIMARY |        | YES           |
-
-
-## series
+## categories
 |   カラム名    |  データ型   | NULL |  キー   | 初期値 | autoincrement |
 | ------------- | ----------- | ---- | ------- | ------ | ------------- |
-| season_number | varchar(10) | YES  | PRIMARY |        |               |
-| season        | varchar(10) |      |         |        |               |
-| program_id    | int         |      | PRIMARY |        | YES           |
+| id            | int         |      | PRIMARY |        | YES           |
+| category_name | varchar(20) |      |         |        |               |
 
+## channels
+|   カラム名   |  データ型   | NULL |  キー   | 初期値 | autoincrement |
+| ------------ | ----------- | ---- | ------- | ------ | ------------- |
+| id           | int         |      | PRIMARY |        | YES           |
+| channel_name | varchar(20) |      |         |        |               |
+
+## programs
+|    カラム名    |   データ型   | NULL |  キー   | 初期値 | autoincrement |     |
+| -------------- | ------------ | ---- | ------- | ------ | ------------- | --- |
+| id             | int          |      | PRIMARY |        |               | YES |
+| program_title  | varchar(100) |      |         |        |               |     |
+| program_detail | varchar(200) |      |         |        |               |     |
+| category_id    | int          |      | FOREIGN |        |               |     |
+| channel_id     | int          |      | FOREIGN |        |               |     |
+- 外部キー制約:category_idに対して、categoriesテーブルのidカラムから設定
+- 外部キー制約:channel_idに対して、channelsテーブルのidカラムから設定
 
 ## episodes
 
 |    カラム名    |   データ型   | NULL |  キー   | 初期値 | autoincrement |
 | -------------- | ------------ | ---- | ------- | ------ | ------------- |
-| season_number  | int          | YES  |         |        |               |
-| episode_number | int          | YES  | PRIMARY |        | YES           |
-| title          | varchar(50)  |      |         |        |               |
+| id             | int          |      | PRIMARY |        | YES           |
+| episode_title  | varchar(100) |      |         |        |               |
 | episode_detail | varchar(200) |      |         |        |               |
-| video_time     | date         |      |         |        |               |
-| open_day       | date         |      |         |        |               |
-| program_id     | int          |      | PRIMARY |        | YES           |
+| video_time     | time         |      |         |        |               |
+| open_day       | DATE         |      |         |        |               |
 | see_number     | int          |      |         |        |               |
+| episode_number | int          |      |         |        |               |
+| program_id     | int          |      | FOREIGN |        |               |
+| season_id      | int          |      | FOREIGN |        |               |
+- 外部キー制約:season_idに対してseasonsテーブルのidカラムから設定
 
-## kpi
-
+## time_slots
 |  カラム名  | データ型 | NULL |  キー   | 初期値 | autoincrement |
 | ---------- | -------- | ---- | ------- | ------ | ------------- |
-| program_id | int      |      | PRIMARY |        | YES           |
-| channel_id | int      |      | PRIMARY |        |               |
-| see_number | int      |      |         |        |               |
+| id         | int      |      | PRIMARY |        | YES           |
+| start_time | DATETIME |      |         |        |               |
+| end_time   | DATETIME |      |         |        |               |
+| episode_id | int      |      | FOREIGN |        |               |
+| channel_id | int      |      | FOREIGN |        |               |
+- 外部キー制約:episode_idに対して、episodesテーブルのidカラムから設定
+- 外部キー制約:channel_idに対して、channelsテーブルのidカラムから設定
 
-## program_frams
-|  カラム名  | データ型 | NULL |  キー   | 初期値 | autoincrement |
-| ---------- | -------- | ---- | ------- | ------ | ------------- |
-| channel_id | int      |      | PRIMARY |        | YES           |
-| start_time | time     |      |         |        |               |
-| end_time   | time     |      |         |        |               |
+## seasons
+|   カラム名    | データ型 | NULL |  キー   | 初期値 | autoincrement |
+| ------------- | -------- | ---- | ------- | ------ | ------------- |
+| id            | int      |      | PRIMARY |        | YES           |
+| season_number | int      |      |         |        |               |
+| program_id    | int      |      | FOREIGN |        |               |
+- 外部キー制約:program_idに対して、programsテーブルのidカラムから設定
+
+## broadcasts
+|   カラム名   | データ型 | NULL |  キー   | 初期値 | autoincrement |
+| ------------ | -------- | ---- | ------- | ------ | ------------- |
+| id           | int      |      | PRIMARY |        | YES           |
+| episode_id   | int      |      | FOREIGN |        |               |
+| time_slot_id | int      |      | FOREIGN |        |               |
+- 外部キー制約:episode_idカラムはepisodesテーブルのepisode_idを参照
+- 外部キー制約:time_slot_idカラムはtime_slotsテーブルのidを参照
