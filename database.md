@@ -13,7 +13,7 @@
 ## programs
 |    カラム名    |   データ型   | NULL |  キー   | 初期値 | autoincrement |     |
 | -------------- | ------------ | ---- | ------- | ------ | ------------- | --- |
-| id             | int          |      | PRIMARY |        |               | YES |
+| id             | int          |      | PRIMARY |        | YES           |     |
 | program_title  | varchar(100) |      |         |        |               |     |
 | program_detail | varchar(200) |      |         |        |               |     |
 | category_id    | int          |      | FOREIGN |        |               |     |

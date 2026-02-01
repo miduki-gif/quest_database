@@ -11,7 +11,7 @@
  - create table time_slots (id int auto_increment, episode_id int, channel_id int, start_time datetime, end_time datetime, primary key(id));
  - create table broadcasts (id int auto_increment, episode_id int, time_slot_id int, primary key(id));
 
- ##　外部キー設定方法
+ ## 外部キー設定方法
 - xamppを使用しているため、mysqlのphpadminからGUIでリレーションという項目を使用し外部キーを設定
 　※注意点としては、参照先にカラムがないと設定ができないため、あらかじめカラムを作成しておく
  - 外部キー設定方法は以下
